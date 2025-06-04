@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GHOST</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="navbar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <ul>
+  <li><a href="index.html"><i class="fa fa-home"></i> HOME</a></li>
+  <li><a href="about.html"><i class="fa fa-user"></i> ABOUT</a></li>
+  <li><a href="photos.html"><i class="fa fa-image"></i> PHOTOS</a></li>
+</ul>
+  </div>
+
+  <div class="overlay">
+    <h1 class="site-title">ADIL</h1>
+
+    <div class="content fade-in">
+      <div class="video-container" id="video-container">
+        <div class="video-preview" id="video-preview">
+        <video
+  id="my-video"
+  src="assets/drethemsg.mp4"
+  muted
+  playsinline
+  preload="metadata"
+  controls
+  style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;"
+></video>
+          <div class="play-button"></div>
+          <div class="spinner" id="spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <a href="https://www.instagram.com/ahmk" target="_blank" class="instagram-link">
+        <img src="assets/instagram-bw.png" alt="Instagram Logo" class="instagram-icon" />
+        <p>IG</p>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('closed');
+    }
+
+    const videoContainer = document.getElementById('video-container');
+    const preview = document.getElementById('video-preview');
+    const spinner = document.getElementById('spinner');
+    const video = document.getElementById('my-video');
+
+    preview.addEventListener('click', () => {
+      spinner.style.display = 'block';
+      video.play();
+      preview.querySelector('.play-button').style.display = 'none';
+
+      video.onplaying = () => {
+        spinner.style.display = 'none';
+      };
+    });
+  </script>
+</body>
+</html>

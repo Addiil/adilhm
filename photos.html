@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PHOTOS - ADIL</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="navbar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <ul>
+      <li><a href="index.html"><i class="fa fa-home"></i> HOME</a></li>
+      <li><a href="about.html"><i class="fa fa-user"></i> ABOUT</a></li>
+      <li><a href="photos.html" class="active"><i class="fa fa-image"></i> PHOTOS</a></li>
+    </ul>
+  </div>
+
+  <!-- Overlay Content -->
+  <div class="overlay">
+    <h1 class="site-title">PHOTOS</h1>
+
+    <div class="content fade-in">
+      <div class="photos-grid">
+        <img src="assets/photo1.jpg" alt="Photo 1" class="photo-thumb" />
+        <img src="assets/photo2.jpg" alt="Photo 2" class="photo-thumb" />
+        <img src="assets/photo3.jpg" alt="Photo 3" class="photo-thumb" />
+        <img src="assets/photo4.jpg" alt="Photo 4" class="photo-thumb" />
+        <img src="assets/photo5.jpg" alt="Photo 5" class="photo-thumb" />
+        <img src="assets/photo6.jpg" alt="Photo 6" class="photo-thumb" />
+        <img src="assets/photo7.jpg" alt="Photo 7" class="photo-thumb" />
+        <img src="assets/photo8.jpg" alt="Photo 8" class="photo-thumb" />
+        <img src="assets/photo9.jpg" alt="Photo 9" class="photo-thumb" />
+        <img src="assets/photo10.jpg" alt="Photo 10" class="photo-thumb" />
+        <img src="assets/photo11.jpg" alt="Photo 11" class="photo-thumb" />
+        <img src="assets/photo12.jpg" alt="Photo 12" class="photo-thumb" />
+      </div>
+    </div>
+
+    <!-- Modal for Enlarged Photo -->
+    <div id="photo-modal" class="modal">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modal-image" />
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://www.instagram.com/ahmk" target="_blank" class="instagram-link">
+        <img src="assets/instagram-bw.png" alt="Instagram Logo" class="instagram-icon" />
+        <p>IG</p>
+      </a>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('closed');
+    }
+
+    // Modal functionality
+    const modal = document.getElementById("photo-modal");
+    const modalImg = document.getElementById("modal-image");
+    const thumbs = document.querySelectorAll(".photo-thumb");
+
+    thumbs.forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>

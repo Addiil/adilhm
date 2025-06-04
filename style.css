@@ -1,0 +1,307 @@
+/* Prevent scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+
+/* Background image */
+body {
+  background: url('assets/my-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Overlay for dark tint */
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* align content to top */
+  position: relative;
+  overflow: hidden;
+  padding-left: 180px; /* make room for sidebar */
+  padding-top: 60px;   /* make room for site title */
+  box-sizing: border-box;
+}
+
+/* Site Title */
+.site-title {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  color: white;
+  white-space: nowrap;
+  border: none; /* removed typing animation border */
+  z-index: 1000;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Video section and content */
+.content {
+  max-width: 900px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fade in animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Video container */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  padding-top: 56.25%; /* 16:9 ratio */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid white;
+}
+
+/* Video preview */
+.video-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: #000;
+}
+
+/* Play button */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.play-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #000;
+}
+
+/* Spinner */
+.spinner {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #fff;
+  border-top: 3px solid #888;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 11;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.instagram-link {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+.instagram-icon {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(100%);
+  margin-bottom: 5px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.instagram-icon:hover {
+  filter: grayscale(0%);
+  transform: scale(1.15) rotate(3deg);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Sidebar Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+  z-index: 1100;
+}
+
+.navbar.closed {
+  transform: translateX(-180px);
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.navbar li {
+  margin: 20px 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #ccc;
+  transform: scale(1.05);
+}
+
+/* Toggle button */
+.toggle-btn {
+  position: absolute;
+  top: 15px;
+  right: -45px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Photos grid: 4 columns x 3 rows */
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 150px);
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Each photo item */
+.photo-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+.photo-item:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Modal container */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal image */
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 0 20px white;
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 201;
+}
+
+.photo-thumb {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+   border: 2px solid white;
+}
+
+.photo-thumb:hover {
+  transform: scale(1.05);
+}
